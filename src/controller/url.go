@@ -47,8 +47,7 @@ func UploadUrl(c *gin.Context) {
 		})
 	} else {
 		domain := os.Getenv("DOMAIN_NAME")
-		shortUrl := fmt.Sprintf("http://%s/%d", domain, url.ID)
-		fmt.Printf("http://%s/%d", domain, url.ID)
+		shortUrl := fmt.Sprintf("http://%s/url/%d", domain, url.ID)
 		c.JSON(http.StatusOK, gin.H{
 			"id": url.ID,
 			"shortUrl": shortUrl,
