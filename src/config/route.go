@@ -9,6 +9,6 @@ func Routes(r *gin.Engine) {
 	url := r.Group("")
 	{
 		url.POST("/api/v1/urls", controller.UploadUrl)
-		// url.GET("/post/:post_id/comment", controller.BrowseCommentController().BrowseComment)
+		url.GET("/url/:url_id", controller.RedirectUrl)
 	}
 }

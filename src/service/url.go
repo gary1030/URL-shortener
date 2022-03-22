@@ -4,6 +4,7 @@ import (
 	"URL-shortener/src/model"
 	"URL-shortener/src/persistence"
 	"time"
+	"fmt"
 )
 
 func AddUrl(Original_url string, expireAt time.Time) (*model.Url, error) {
@@ -23,7 +24,7 @@ func GetOriginalUrl(url_id int64) (string, error) {
 	url := &model.Url{}
 	err := persistence.DB.Select("original_url").Where("id = ?", url_id).First(&url).Error
 	if err != nil {
-        return "", err
+		return "", err
     } else {
 		return url.Original_url, nil
 	}	

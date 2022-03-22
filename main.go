@@ -10,7 +10,7 @@ import (
     "URL-shortener/src/model"
     "URL-shortener/src/persistence"
     "URL-shortener/src/config"
-    "time"
+    //"time"
 )
 
 func test(c *gin.Context) {
@@ -38,15 +38,15 @@ func main() {
         log.Fatal("Error loading db")
     }
 
-    t, _ := time.Parse(time.RFC3339, "2023-02-08T09:20:41")
-    url := model.Url{
-        Original_url: "https://www.google.com.tw/?hl=zh_TW",
-        Expired_date: t,
-	}
+    // t, _ := time.Parse(time.RFC3339, "2023-02-08T09:20:41")
+    // url := model.Url{
+    //     Original_url: "https://www.google.com.tw/?hl=zh_TW",
+    //     Expired_date: t,
+	// }
     db.AutoMigrate(&model.Url{})
     
     // Insert
-    db.Model(&model.Url{}).Create(&url)
+    // db.Model(&model.Url{}).Create(&url)
 
 
     domain := os.Getenv("DOMAIN_NAME")
