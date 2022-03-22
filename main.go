@@ -6,11 +6,9 @@ import (
     "os"
     "github.com/gin-gonic/gin"
     "github.com/joho/godotenv"
-    "gorm.io/gorm"
     "URL-shortener/src/model"
     "URL-shortener/src/persistence"
     "URL-shortener/src/config"
-    //"time"
 )
 
 func test(c *gin.Context) {
@@ -30,21 +28,19 @@ func main() {
 	password := os.Getenv("PG_PASSWORD")
 	dbName := os.Getenv("PG_DBNAME")
 
-    var db *gorm.DB
-    var db_err error
     dsn := "host=" + host + " port=" + port + " user=" + username + " password=" + password + " dbname=" + dbName
-	db, db_err = persistence.Initialize(dsn)
+	db, db_err := persistence.Initialize(dsn)
     if db_err != nil {
         log.Fatal("Error loading db")
     }
+
+    db.AutoMigrate(&model.Url{})
 
     // t, _ := time.Parse(time.RFC3339, "2023-02-08T09:20:41")
     // url := model.Url{
     //     Original_url: "https://www.google.com.tw/?hl=zh_TW",
     //     Expired_date: t,
-	// }
-    db.AutoMigrate(&model.Url{})
-    
+	// }    
     // Insert
     // db.Model(&model.Url{}).Create(&url)
 

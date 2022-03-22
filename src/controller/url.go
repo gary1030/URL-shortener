@@ -25,7 +25,7 @@ type AddUrlInput struct {
 	ExpireAt time.Time `json:"expireAt" binding:"required"`
 }
 
-// AddUrl @Summary
+// AddUrl
 // @Success 200 string successful return id & shortUrl
 // @Router /api/v1/urls [post]
 func UploadUrl(c *gin.Context) {
@@ -36,6 +36,7 @@ func UploadUrl(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error":   bindErr.Error(),
 		})
+		return
 	}
 
 	url, err := service.AddUrl(form.Url, form.ExpireAt)
@@ -55,8 +56,9 @@ func UploadUrl(c *gin.Context) {
 	}
 }
 
-// Redirect Url @Summary
+// Redirect Url
 // @Success 200 redirect to original URL
+// @Router /url/:url_id [post]
 func RedirectUrl(c *gin.Context) {
 	id := c.Params.ByName("url_id")
 	urlId, err := strconv.ParseInt(id, 10, 64)
@@ -64,14 +66,22 @@ func RedirectUrl(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
 
-	ori_url, err := service.GetOriginalUrl(urlId)
+	url, err := service.GetUrl(urlId)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": err.Error(),
 		})
 	} else {
-		c.Redirect(http.StatusMovedPermanently, ori_url)
+		cur_time := time.Now()
+		if url.Expired_date.After(cur_time){
+			c.Redirect(http.StatusMovedPermanently, url.Original_url)
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "Expired",
+			})			
+		}
 	}
 }
