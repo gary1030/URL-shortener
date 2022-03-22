@@ -72,8 +72,6 @@ func RedirectUrl(c *gin.Context) {
 			"error": err.Error(),
 		})
 	} else {
-		c.JSON(http.StatusOK, gin.H{
-			"ori_url": ori_url,
-		})
+		c.Redirect(http.StatusMovedPermanently, ori_url)
 	}
 }

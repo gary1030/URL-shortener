@@ -4,7 +4,6 @@ import (
 	"URL-shortener/src/model"
 	"URL-shortener/src/persistence"
 	"time"
-	"fmt"
 )
 
 func AddUrl(Original_url string, expireAt time.Time) (*model.Url, error) {
