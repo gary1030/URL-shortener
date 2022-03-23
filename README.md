@@ -72,7 +72,7 @@ There are 2 APIs.
 
 ## Technique
 
-* go
-* gorm
-* gin
+* Go
+* Gorm
+* Gin
 * PostgreSQL
