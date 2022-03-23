@@ -32,21 +32,25 @@ There are 2 APIs.
 ## Set up
 
 1. Clone project
+
     ```shell
     git clone https://github.com/gary1030/URL-shortener.git
     ```
 
 2. Change directory
+
    ```shell
    cd URL-shortener
    ```
 
 3. Copy configuration files
+
     ```shell
     cp .env.example .env
     ```
 
 4. Edit `.env` file
+
     ```txt
     PG_HOST=localhost
     PG_PORT=5432
@@ -55,18 +59,20 @@ There are 2 APIs.
     PG_DBNAME=URL
     DOMAIN_NAME=localhost
     ```
-   
+
 5. Start backend service
+
     ```shell
     go run .
     ```
 
-6. Test 
+6. Test
+
    You may go to `http://localhost:8080/1` to check whether setting is correct.
 
 ## Technique
+
 * go
 * gorm
 * gin
 * PostgreSQL
-
