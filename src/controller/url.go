@@ -1,13 +1,14 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
 	"URL-shortener/src/service"
-	"time"
 	"fmt"
+	"net/http"
 	"os"
 	"strconv"
+	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 // type UrlController struct {}
@@ -34,7 +35,7 @@ func UploadUrl(c *gin.Context) {
 	bindErr := c.BindJSON(&form)
 	if bindErr != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error":   bindErr.Error(),
+			"error": bindErr.Error(),
 		})
 		return
 	}
@@ -43,13 +44,13 @@ func UploadUrl(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error":   err.Error(),
+			"error": err.Error(),
 		})
 	} else {
 		domain := os.Getenv("DOMAIN_NAME")
-		shortUrl := fmt.Sprintf("http://%s/url/%d", domain, url.ID)
+		shortUrl := fmt.Sprintf("http://%s/%d", domain, url.ID)
 		c.JSON(http.StatusOK, gin.H{
-			"id": url.ID,
+			"id":       url.ID,
 			"shortUrl": shortUrl,
 		})
 	}
@@ -57,7 +58,7 @@ func UploadUrl(c *gin.Context) {
 
 // Redirect Url
 // @Success 200 redirect to original URL
-// @Router /url/:url_id [post]
+// @Router /:url_id [post]
 func RedirectUrl(c *gin.Context) {
 	id := c.Params.ByName("url_id")
 	urlId, err := strconv.ParseInt(id, 10, 64)
@@ -75,12 +76,12 @@ func RedirectUrl(c *gin.Context) {
 		})
 	} else {
 		cur_time := time.Now()
-		if url.Expired_date.After(cur_time){
+		if url.Expired_date.After(cur_time) {
 			c.Redirect(http.StatusMovedPermanently, url.Original_url)
 		} else {
-			c.JSON(http.StatusBadRequest, gin.H{
+			c.JSON(http.StatusNotFound, gin.H{
 				"error": "Expired",
-			})			
+			})
 		}
 	}
 }
