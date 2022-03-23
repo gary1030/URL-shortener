@@ -4,6 +4,7 @@ import (
 	"URL-shortener/src/config"
 	"URL-shortener/src/model"
 	"URL-shortener/src/persistence"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -38,7 +39,8 @@ func main() {
 
 	db.AutoMigrate(&model.Url{})
 
-	t, _ := time.Parse(time.RFC3339, "2030-12-31T23:59:59")
+	t, _ := time.Parse(time.RFC3339, "2030-01-02T15:04:05Z")
+	fmt.Println(t)
 	url := model.Url{
 		Original_url: "https://www.google.com.tw/",
 		Expired_date: t,
