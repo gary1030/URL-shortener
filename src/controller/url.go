@@ -40,6 +40,14 @@ func UploadUrl(c *gin.Context) {
 		return
 	}
 
+	checkErr := service.CheckUrl(form.Url)
+	if checkErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": checkErr.Error(),
+		})
+		return
+	}
+
 	url, err := service.AddUrl(form.Url, form.ExpireAt)
 
 	if err != nil {
