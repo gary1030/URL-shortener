@@ -1,9 +1,10 @@
 package persistence
 
 import (
-    "gorm.io/driver/postgres"
-	"gorm.io/gorm"
 	"time"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
