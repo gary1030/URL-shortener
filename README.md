@@ -74,5 +74,10 @@ There are 2 APIs.
 
 * Go
 * Gorm
+  * Save quite a bit of tedious sql coding
+  * Slow down application rather than SQLite
 * Gin
+  * Known for high-performing APIs
+  * A lean and simple framework
+  * Awful router pattern matching, but we have only two APIs, so it's fine.
 * PostgreSQL
