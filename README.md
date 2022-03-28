@@ -68,7 +68,7 @@ There are 2 APIs.
 
 6. Test
 
-   You may go to `http://localhost:8080/1` to check whether setting is correct.
+   You may go to `http://localhost:8080/ABCDEF` to check whether setting is correct.
 
 ## Technique
 

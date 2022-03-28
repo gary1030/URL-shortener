@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -56,9 +55,9 @@ func UploadUrl(c *gin.Context) {
 		})
 	} else {
 		domain := os.Getenv("DOMAIN_NAME")
-		shortUrl := fmt.Sprintf("http://%s/%d", domain, url.ID)
+		shortUrl := fmt.Sprintf("http://%s/%s", domain, url.Url_id)
 		c.JSON(http.StatusOK, gin.H{
-			"id":       url.ID,
+			"id":       url.Url_id,
 			"shortUrl": shortUrl,
 		})
 	}
@@ -68,14 +67,7 @@ func UploadUrl(c *gin.Context) {
 // @Success 200 redirect to original URL
 // @Router /:url_id [post]
 func RedirectUrl(c *gin.Context) {
-	id := c.Params.ByName("url_id")
-	urlId, err := strconv.ParseInt(id, 10, 64)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
+	urlId := c.Params.ByName("url_id")
 
 	url, err := service.GetUrl(urlId)
 	if err != nil {

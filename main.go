@@ -44,6 +44,7 @@ func main() {
 	url := model.Url{
 		Original_url: "https://www.google.com.tw/",
 		Expired_date: t,
+		Url_id:       "ABCDEF",
 	}
 	// Insert
 	db.Model(&model.Url{}).Create(&url)
