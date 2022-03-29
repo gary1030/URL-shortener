@@ -26,13 +26,11 @@ There are 2 APIs.
     }
     ```
 
-  * Detailed description
-    After sending the request, server will check url validity, and then generate a random string with 6 letters to be url_id. Finally, insert this url object to database, and response to client.
+  * Detailed description: After sending the request, server will check url validity, and then generate a random string with 6 letters to be url_id. Finally, insert this url object to database, and response to client.
 
 * GET /:url_id
   * Redirect to original URL
-  * Detailed description
-    Server will first check url_id exists or not. If exists, check expired time and redirect to original url.
+  * Detailed description: Server will first check url_id exists or not. If exists, check expired time and redirect to original url.
 
 ## Set up
 
