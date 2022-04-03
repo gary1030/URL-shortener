@@ -60,7 +60,7 @@ There are 2 APIs.
     PG_USERNAME=
     PG_PASSWORD=
     PG_DBNAME=URL
-    DOMAIN_NAME=localhost
+    DOMAIN_NAME=localhost:8080
     ```
     
 5. Install packages
