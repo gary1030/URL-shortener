@@ -68,14 +68,19 @@ There are 2 APIs.
     ```shell
     go install
     ```
+    
+6.
+    ```shell
+    go mod tidy
+    ```
 
-6. Start backend service
+7. Start backend service
 
     ```shell
     go run .
     ```
 
-7. Test
+8. Test
 
    You may go to `http://localhost:8080/ABCDEF` to check whether setting is correct.
 
