@@ -62,14 +62,20 @@ There are 2 APIs.
     PG_DBNAME=URL
     DOMAIN_NAME=localhost
     ```
+    
+5. Install packages
 
-5. Start backend service
+    ```shell
+    go install
+    ```
+
+6. Start backend service
 
     ```shell
     go run .
     ```
 
-6. Test
+7. Test
 
    You may go to `http://localhost:8080/ABCDEF` to check whether setting is correct.
 
