@@ -67,6 +67,7 @@ There are 2 APIs.
 
     ```shell
     go install
+    go mod tidy
     ```
 
 6. Start backend service
